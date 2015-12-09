@@ -4,6 +4,10 @@ module.exports = new astro.Middleware({
     modType:'page',
     fileType:'js'
 }, function(asset, next) {
+    if(!asset.data){
+        next(asset);
+        return
+    }
     if (asset.prjCfg.compressJs || astro.evn == 'release') {
         try {
             var code = uglifyJs.minify(asset.data, {
