@@ -1,7 +1,7 @@
 var uglifyJs = require('uglify-js');
 
 module.exports = new astro.Middleware({
-    modType:'page',
+    modType:['page','static'],
     fileType:'js'
 }, function(asset, next) {
     if(!asset.data){
