@@ -16,8 +16,8 @@ module.exports = new astro.Middleware({
             asset._data = asset.data;
             asset.data = code;
         } catch (error) {
-            console.error('astro-js-minify(asset:%s)%s', 
-                asset.info, '语法错误');
+            console.error('astro-js-minify:asset(%s)', 
+                asset.info, '中有JS语法错误');
 
             var line = 1;
             asset.data = '// message:\t' + error.message + '\n'+
