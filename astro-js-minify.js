@@ -1,14 +1,13 @@
 var uglifyJs = require('uglify-js');
 
 module.exports = new astro.Middleware({
-    modType:['page','static'],
     fileType:'js'
 }, function(asset, next) {
     if(!asset.data){
         next(asset);
         return
     }
-    if (asset.prjCfg.compressJs || astro.evn == 'release') {
+    if (asset.prjCfg.compressJs) {
         try {
             var code = uglifyJs.minify(asset.data, {
                 fromString: true
@@ -16,8 +15,8 @@ module.exports = new astro.Middleware({
             asset._data = asset.data;
             asset.data = code;
         } catch (error) {
-            console.error('astro-js-minify:asset(%s)', 
-                asset.info, '中有JS语法错误');
+            console.error('astro-js-minify(asset:%s)%s', 
+                asset.info, '语法错误');
 
             var line = 1;
             asset.data = '// message:\t' + error.message + '\n'+
