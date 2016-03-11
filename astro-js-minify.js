@@ -59,7 +59,7 @@ module.exports = new astro.Middleware({
                 code = uglifyJs.minify(asset.data, {
                     fromString: true
                 }).code;
-                console.info('\t耗时',((Date.now()-t1)/1000)+'s');
+                console.info('\t完成！耗时',((Date.now()-t1)/1000)+'s');
             }else{
                 code = asset.data
             }
