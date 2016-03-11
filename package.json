@@ -4,7 +4,8 @@
   "description": "",
   "main": "astro-js-minify.js",
   "dependencies": {
-    "uglify-js": "^2.6.1"
+    "uglify-js": "^2.6.1",
+    "file-plus": "0.0.4",
   },
   "devDependencies": {},
   "scripts": {
