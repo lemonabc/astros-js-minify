@@ -1,11 +1,11 @@
 {
   "name": "astros-js-minify",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "",
   "main": "astro-js-minify.js",
   "dependencies": {
     "uglify-js": "^2.6.1",
-    "file-plus": "0.0.4",
+    "file-plus": "0.0.4"
   },
   "devDependencies": {},
   "scripts": {
