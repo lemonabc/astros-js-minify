@@ -50,7 +50,7 @@ module.exports = new astro.Middleware({
     }
     try {
         // 读取缓存
-        var code = getCache(asset);;
+        var code = getCache(asset);
 
         if (!code) {
             if(asset.data.indexOf('/*astros-js-minify:ignore*/') !== 0){
@@ -66,17 +66,18 @@ module.exports = new astro.Middleware({
 
             setCache(asset, code);
         }
+
         asset._data = asset.data;
         asset.data = code;
 
     } catch (error) {
-
-        console.error('astro-js-minify：JS(asset:%s)有语法错误，info:\n%s',
-            asset.info, error);
+        console.error('astro-js-minify：解析(asset:%s)时有语法错误，info:\n\n%s',
+            asset.info, error.message);
+        console.info('详情请阅读文件：' + asset.relPath);
 
         var line = 1;
         asset.data = '// message:\t' + error.message + '\n' +
-            "// line:\t" + error.line + '\n// input is:\n\n' +
+            "// line:\t" + error.line + '\n/*\n'+error.stack+'\n*/\n// input is:\n\n' +
             asset.data.replace(/(.*)\n?/ig, function(a, b) {
                 return '/*' + line++ + '*/  ' + b + '\n';
             });
