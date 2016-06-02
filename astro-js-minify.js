@@ -43,7 +43,7 @@ module.exports = new astro.Middleware({
     fileType: 'js'
 }, function(asset, next) {
     // 是否压缩
-    var iscompress = asset.prjCfg.compressJs || this.config.compress;
+    var iscompress = asset.prjCfg.compressJs || this.config.compress != false;
     if (!asset.data || !iscompress) {
         next(asset);
         return
